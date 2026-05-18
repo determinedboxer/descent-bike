@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import BikeScene from './components/BikeScene'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
@@ -118,6 +119,55 @@ export default function App() {
       <OrderModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
       <GrainOverlay />
+      <AnimatePresence>
+        {loaded && (
+          <motion.a
+            href="https://lemons.studio"
+            target="_blank"
+            rel="noopener noreferrer"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            style={{
+              position: 'fixed',
+              bottom: '24px',
+              left: '24px',
+              zIndex: 9999,
+              display: 'flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '8px 14px',
+              background: 'rgba(8,8,8,0.9)',
+              border: '1px solid rgba(255,255,255,0.1)',
+              backdropFilter: 'blur(8px)',
+              textDecoration: 'none',
+              cursor: 'pointer',
+              transition: 'border-color 0.3s ease',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.borderColor = '#C8FF00')}
+            onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)')}
+          >
+            <span style={{
+              fontFamily: 'monospace',
+              fontSize: '12px',
+              fontWeight: '700',
+              color: '#ffffff',
+              letterSpacing: '0.1em',
+            }}>
+              LEM<span style={{ color: '#C8FF00' }}>●</span>NS.
+            </span>
+            <span style={{
+              fontFamily: 'sans-serif',
+              fontSize: '10px',
+              color: 'rgba(255,255,255,0.4)',
+              letterSpacing: '0.15em',
+              textTransform: 'uppercase',
+            }}>
+              Portfolio
+            </span>
+          </motion.a>
+        )}
+      </AnimatePresence>
     </>
   )
 }
