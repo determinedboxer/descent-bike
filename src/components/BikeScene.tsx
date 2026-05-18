@@ -48,7 +48,7 @@ function CameraDriver() {
 
 function BikeModel() {
   const groupRef = useRef<THREE.Group>(null)
-  const { scene } = useGLTF('/bike/bike.glb')
+  const { scene } = useGLTF('https://media.githubusercontent.com/media/determinedboxer/descent-bike/main/public/bike/bike.glb')
 
   const shadowTex = useMemo(() => {
     const size = 512
